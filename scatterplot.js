@@ -60,3 +60,13 @@ svg.selectAll("text").data(monthlySales)
   "font-family": "sans-serif",
   "fill": "#666666"
 });
+
+d3.select("select")
+  .on("change", function (d) {
+     var sel = d3.select("#label-option").node().value;
+     svg.selectAll("text")
+         .data(monthlySales)
+         .text(function (d) {
+             return showMinMax(monthlySales, 'sales', d.sales, sel);
+         })
+  });
